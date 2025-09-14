@@ -1,4 +1,4 @@
-package com.aprendendoDTO.usuario.business.dto.mapstruct;
+package com.aprendendoDTO.usuario.business.mapstruct;
 
 import com.aprendendoDTO.usuario.business.dto.UsuarioRequestDTO;
 import com.aprendendoDTO.usuario.business.dto.UsuarioResponseDTO;

@@ -27,7 +27,6 @@ public class ProdutoEntity {
         @Column(name = "descricaoCompleta", columnDefinition = "TEXT")
         private String descricaoCompleta;
 
-        @Setter
         @Column(name = "preco", precision = 10, scale = 2)
         private BigDecimal preco;
 

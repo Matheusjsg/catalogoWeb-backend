@@ -14,19 +14,17 @@ public class ImagemEntity {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private long id;
-
         private String nomeArquivo;
-
         @ManyToOne
         @JoinColumn(name = "produto_id")
         private ProdutoEntity produto;
 
 
-        public ImagemEntity() {}
+public ImagemEntity() {}
 
 
 
-        public ImagemEntity(String nomeArquivo, ProdutoEntity produto) {
+public ImagemEntity(String nomeArquivo, ProdutoEntity produto) {
             this.nomeArquivo = nomeArquivo;
             this.produto = produto;
         }

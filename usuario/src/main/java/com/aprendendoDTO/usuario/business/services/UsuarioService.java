@@ -3,13 +3,12 @@ package com.aprendendoDTO.usuario.business.services;
 
 import com.aprendendoDTO.usuario.business.dto.UsuarioRequestDTO;
 import com.aprendendoDTO.usuario.business.dto.UsuarioResponseDTO;
-import com.aprendendoDTO.usuario.business.dto.mapstruct.UsuarioMapper;
+import com.aprendendoDTO.usuario.business.mapstruct.UsuarioMapper;
 import com.aprendendoDTO.usuario.infrastructure.repositories.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
