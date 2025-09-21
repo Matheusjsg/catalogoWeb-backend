@@ -4,37 +4,72 @@ package com.ecommerce.simples.business.services;
 import com.ecommerce.simples.business.dto.Request.UsuarioRequestDTO;
 import com.ecommerce.simples.business.dto.Response.UsuarioResponseDTO;
 import com.ecommerce.simples.business.mapstruct.UsuarioMapper;
+import com.ecommerce.simples.infrastructure.entities.UsuarioEntity;
 import com.ecommerce.simples.infrastructure.repositories.UsuarioRepository;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+
 public class UsuarioService {
 
-    private final UsuarioRepository repository;
-    public final UsuarioMapper mapper;
+    private UsuarioRepository userRepository;
+    private UsuarioMapper mapper;
+    private PasswordEncoder passwordEncoder;
 
-    public UsuarioResponseDTO salvaUsuario(UsuarioRequestDTO request){
+public UsuarioService(UsuarioRepository usuarioRepository){
+    this.userRepository = usuarioRepository;
+    this.passwordEncoder = new BCryptPasswordEncoder();
+
+    }
+
+public UsuarioResponseDTO criarUsuario(UsuarioRequestDTO dto) {
+        // mapear dados básicos
+        UsuarioEntity usuario = mapper.paraUsuarioEntity(dto);
+
+        // gerar hash da senha (BCrypt) e setar na entidade
+        String hashed = passwordEncoder.encode(dto.getPassword());
+        usuario.setPassword(hashed);
+
+        // salvar
+        UsuarioEntity salvo = userRepository.save(usuario);
+
+        // retornar response DTO (sem senha)
+        return mapper.paraResponseDTO(salvo);
+    }
+
+
+
+public UsuarioResponseDTO salvaUsuario(UsuarioRequestDTO request){
          return  mapper.paraResponseDTO(
-                        repository.save(
+                        userRepository.save(
                             mapper.paraUsuarioEntity(request)));
     }
 
     public void DeleteUsuarioPorNome(String nome){
-        repository.deleteByNome(nome);
-
-    }public UsuarioResponseDTO buscarPorNome(String nome){
-        return mapper.paraResponseDTO(
-                repository.findByNome(nome));
+        userRepository.deleteByNome(nome);
 
     }
+    public UsuarioResponseDTO buscarPorNome(String nome){
+        return mapper.paraResponseDTO(
+                userRepository.findByNome(nome));
 
-    public List<UsuarioResponseDTO> MostrarUsuarios(){
+    }
+    public UsuarioResponseDTO buscarPorEmail(String email){
+        return mapper.paraResponseDTO(
+                userRepository.findByEmail(email));
+    }
+
+
+        public List<UsuarioResponseDTO> MostrarUsuarios(){
         return mapper.paraListaUsuarioResponseDTO(
-                repository.findAll());
+                userRepository.findAll());
     }
     }
 

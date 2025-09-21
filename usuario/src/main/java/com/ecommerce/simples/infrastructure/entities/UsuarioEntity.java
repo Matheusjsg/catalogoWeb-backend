@@ -25,4 +25,10 @@ public class UsuarioEntity {
     @Column(name = "senha")
     private String password;
 
+
+    public UsuarioEntity (String nome, String email, String password){
+        this.nome = nome;
+        this.email = email;
+        this.password = password;
+    }
 }

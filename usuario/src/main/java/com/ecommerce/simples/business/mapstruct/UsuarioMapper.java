@@ -5,7 +5,6 @@ import com.ecommerce.simples.business.dto.Response.UsuarioResponseDTO;
 import com.ecommerce.simples.infrastructure.entities.UsuarioEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-
 import java.util.List;
 
 @Mapper(componentModel = "spring")
