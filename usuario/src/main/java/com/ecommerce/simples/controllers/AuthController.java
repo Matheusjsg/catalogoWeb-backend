@@ -31,17 +31,14 @@ public class AuthController {
 
 @PostMapping("/registrar")
     public ResponseEntity<?> registrar(@RequestBody UsuarioRequestDTO dto){
-    // 1. Verifica se email já está em uso
-    if (usuarioRepository.findByEmail(dto.getEmail()).
-
+    UsuarioResponseDTO usuario = usuarioService.criarUsuario(dto);{
+        return ResponseEntity.ok(usuario);
     }
 
 
 
 
 
-
-    UsuarioEntity usuario = usuarioService.criarUsuario(request.)
 }
 
 

@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,13 +24,19 @@ public class UsuarioService {
     private UsuarioMapper mapper;
     private PasswordEncoder passwordEncoder;
 
-public UsuarioService(UsuarioRepository usuarioRepository){
-    this.userRepository = usuarioRepository;
-    this.passwordEncoder = new BCryptPasswordEncoder();
+    public UsuarioService(UsuarioRepository usuarioRepository) {
+        this.userRepository = usuarioRepository;
+        this.passwordEncoder = new BCryptPasswordEncoder();
 
     }
 
-public UsuarioResponseDTO criarUsuario(UsuarioRequestDTO dto) {
+    public UsuarioResponseDTO criarUsuario(UsuarioRequestDTO dto) {
+
+        userRepository.findByEmail(dto.getEmail())
+
+                .ifPresent(u -> {
+                    throw new RuntimeException("Email já cadastrado!");
+                });
         // mapear dados básicos
         UsuarioEntity usuario = mapper.paraUsuarioEntity(dto);
 
@@ -42,34 +49,40 @@ public UsuarioResponseDTO criarUsuario(UsuarioRequestDTO dto) {
 
         // retornar response DTO (sem senha)
         return mapper.paraResponseDTO(salvo);
+
+
     }
 
 
-
-public UsuarioResponseDTO salvaUsuario(UsuarioRequestDTO request){
-         return  mapper.paraResponseDTO(
-                        userRepository.save(
-                            mapper.paraUsuarioEntity(request)));
+    public UsuarioResponseDTO salvaUsuario(UsuarioRequestDTO request) {
+        return mapper.paraResponseDTO(
+                userRepository.save(
+                        mapper.paraUsuarioEntity(request)));
     }
 
-    public void DeleteUsuarioPorNome(String nome){
+    public void DeleteUsuarioPorNome(String nome) {
         userRepository.deleteByNome(nome);
 
     }
-    public UsuarioResponseDTO buscarPorNome(String nome){
+
+    public UsuarioResponseDTO buscarPorNome(String nome) {
         return mapper.paraResponseDTO(
                 userRepository.findByNome(nome));
 
     }
-    public UsuarioResponseDTO buscarPorEmail(String email){
-        return mapper.paraResponseDTO(
-                userRepository.findByEmail(email));
+
+    public UsuarioResponseDTO buscarPorEmail(String email) {
+        UsuarioEntity usuario = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        return mapper.paraResponseDTO(usuario);
     }
 
 
-        public List<UsuarioResponseDTO> MostrarUsuarios(){
+
+    public List<UsuarioResponseDTO> MostrarUsuarios() {
         return mapper.paraListaUsuarioResponseDTO(
                 userRepository.findAll());
     }
-    }
+}
 
