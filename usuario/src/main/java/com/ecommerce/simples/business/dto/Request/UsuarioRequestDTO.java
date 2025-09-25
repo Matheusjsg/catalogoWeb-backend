@@ -18,8 +18,8 @@ public class UsuarioRequestDTO {
     private String email;
     private String password;
 
-    public UsuarioRequestDTO(String nome, String password){
-        this.nome = nome;
+    public UsuarioRequestDTO(String email, String password){
+        this.email = email;
         this.password = password;
     }
 }

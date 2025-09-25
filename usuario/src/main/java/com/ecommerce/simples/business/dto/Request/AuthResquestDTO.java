@@ -1,12 +1,16 @@
 package com.ecommerce.simples.business.dto.Request;
 
-import lombok.Data;
+import lombok.*;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class AuthResquestDTO {
 
     @Data
     public class AuthRequestDTO {
-        private String nome;
+        private String email;
         private String password;
 
     }

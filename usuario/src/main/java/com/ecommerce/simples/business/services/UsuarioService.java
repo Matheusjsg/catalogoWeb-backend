@@ -70,8 +70,13 @@ public class UsuarioService {
                 userRepository.findByNome(nome));
 
     }
+    public UsuarioEntity buscarEntidadePorEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+    }
 
     public UsuarioResponseDTO buscarPorEmail(String email) {
+
         UsuarioEntity usuario = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
