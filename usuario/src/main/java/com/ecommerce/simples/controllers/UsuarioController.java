@@ -13,13 +13,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/usuario")
-@RequiredArgsConstructor
-@AllArgsConstructor
+
 
 public class UsuarioController {
 
     private final UsuarioService service;
 
+    public UsuarioController(UsuarioService service) {
+        this.service = service;
+    }
 
     @PostMapping
     public ResponseEntity<UsuarioResponseDTO> salvaUsuario(@RequestBody UsuarioRequestDTO dto){
@@ -40,7 +42,7 @@ public class UsuarioController {
   }
     @DeleteMapping
     public ResponseEntity<Void> excluirUsuario(@PathVariable("nome") String nome) {
-        service.DeleteUsuarioPorNome(nome);
+        service.deleteUsuarioPorNome(nome);
         return ResponseEntity.ok().build();
     }
 

@@ -8,8 +8,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-@Setter
-@Getter
+
 @Entity
 @Table(name = "produtos")
 public class ProdutoEntity {
@@ -51,5 +50,67 @@ public class ProdutoEntity {
 
         public ProdutoEntity() {}
 
+    public long getId() {
+        return id;
+    }
 
-        }
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDescricaolink() {
+        return descricaolink;
+    }
+
+    public void setDescricaolink(String descricaolink) {
+        this.descricaolink = descricaolink;
+    }
+
+    public String getDescricaoCompleta() {
+        return descricaoCompleta;
+    }
+
+    public void setDescricaoCompleta(String descricaoCompleta) {
+        this.descricaoCompleta = descricaoCompleta;
+    }
+
+    public BigDecimal getPreco() {
+        return preco;
+    }
+
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
+    }
+
+    public List<ImagemEntity> getImagens() {
+        return imagens;
+    }
+
+    public void setImagens(List<ImagemEntity> imagens) {
+        this.imagens = imagens;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
+    public CategoriaEntity getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(CategoriaEntity categoria) {
+        this.categoria = categoria;
+    }
+}

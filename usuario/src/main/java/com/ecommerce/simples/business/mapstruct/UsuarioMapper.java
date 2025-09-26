@@ -11,8 +11,10 @@ import java.util.List;
 public interface UsuarioMapper {
 
     //@Mapping(source = "nome", target = "name") <- caso o nome do DTO seja diferente da entity (esclarece aqui)
-    @Mapping(target = "id", ignore = true) // <- essa variavel não esta na minha DTO
+   @Mapping(target = "id", ignore = true)
+   @Mapping(target = "role", ignore = true)
     UsuarioEntity paraUsuarioEntity(UsuarioRequestDTO dto);
+
 
     UsuarioResponseDTO paraResponseDTO(UsuarioEntity entity);
 

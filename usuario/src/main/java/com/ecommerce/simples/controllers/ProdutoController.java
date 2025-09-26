@@ -13,14 +13,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/produtos")
-@RequiredArgsConstructor
 public class ProdutoController {
 
   @Autowired
   private final ProdutoService produtoService;
 
+    public ProdutoController(ProdutoService produtoService) {
+        this.produtoService = produtoService;
+    }
 
-  @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
   public ResponseEntity<Void> deletarProdutoporId(@PathVariable("id") Long id){
         produtoService.deletarProdutoPorId(id);
         return ResponseEntity.noContent().build();

@@ -4,8 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+
 @Entity
 @Table(name = "ImagemProduto")
 public class ImagemEntity {
@@ -23,8 +22,31 @@ public class ImagemEntity {
 public ImagemEntity() {}
 
 
+    public long getId() {
+        return id;
+    }
 
-public ImagemEntity(String nomeArquivo, ProdutoEntity produto) {
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getNomeArquivo() {
+        return nomeArquivo;
+    }
+
+    public void setNomeArquivo(String nomeArquivo) {
+        this.nomeArquivo = nomeArquivo;
+    }
+
+    public ProdutoEntity getProduto() {
+        return produto;
+    }
+
+    public void setProduto(ProdutoEntity produto) {
+        this.produto = produto;
+    }
+
+    public ImagemEntity(String nomeArquivo, ProdutoEntity produto) {
             this.nomeArquivo = nomeArquivo;
             this.produto = produto;
         }

@@ -15,14 +15,14 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ProdutoMapper {
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "slug", ignore = true) // slug pode ser gerado no service
-    @Mapping(target = "categoria", source = "categoriaId", qualifiedByName = "mapCategoria")
-    @Mapping(target = "imagens", source = "imagens", qualifiedByName = "mapImagensStringToEntity")
+   @Mapping(target = "id", ignore = true)
+  @Mapping(target = "slug", ignore = true) // slug pode ser gerado no service
+   @Mapping(target = "categoria", source = "categoriaId", qualifiedByName = "mapCategoria")
+  @Mapping(target = "imagens", source = "imagens", qualifiedByName = "mapImagensStringToEntity")
     ProdutoEntity paraProdutoEntity(ProdutoRequestDTO dto);
 
-    @Mapping(target = "categoria", source = "categoria", qualifiedByName = "mapCategoriaResponse")
-    @Mapping(target = "imagens", source = "imagens", qualifiedByName = "mapImagensEntityToString")
+   @Mapping(target = "categoria", source = "categoria", qualifiedByName = "mapCategoriaResponse")
+   @Mapping(target = "imagens", source = "imagens", qualifiedByName = "mapImagensEntityToString")
     ProdutoResponseDTO paraProdutoResponse(ProdutoEntity entity);
 
 

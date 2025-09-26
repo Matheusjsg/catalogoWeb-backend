@@ -6,6 +6,7 @@ import com.ecommerce.simples.business.dto.Response.UsuarioResponseDTO;
 import com.ecommerce.simples.business.mapstruct.UsuarioMapper;
 import com.ecommerce.simples.infrastructure.entities.UsuarioEntity;
 import com.ecommerce.simples.infrastructure.repositories.UsuarioRepository;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,20 +16,18 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-@RequiredArgsConstructor
 
+@RequiredArgsConstructor
+@AllArgsConstructor
+@Service
 public class UsuarioService {
 
     private UsuarioRepository userRepository;
     private UsuarioMapper mapper;
     private PasswordEncoder passwordEncoder;
 
-    public UsuarioService(UsuarioRepository usuarioRepository) {
-        this.userRepository = usuarioRepository;
-        this.passwordEncoder = new BCryptPasswordEncoder();
 
-    }
+
 
     public UsuarioResponseDTO criarUsuario(UsuarioRequestDTO dto) {
 
@@ -41,8 +40,7 @@ public class UsuarioService {
         UsuarioEntity usuario = mapper.paraUsuarioEntity(dto);
 
         // gerar hash da senha (BCrypt) e setar na entidade
-        String hashed = passwordEncoder.encode(dto.getPassword());
-        usuario.setPassword(hashed);
+        usuario.setPassword(passwordEncoder.encode(dto.getPassword()));
 
         // salvar
         UsuarioEntity salvo = userRepository.save(usuario);
@@ -50,9 +48,7 @@ public class UsuarioService {
         // retornar response DTO (sem senha)
         return mapper.paraResponseDTO(salvo);
 
-
     }
-
 
     public UsuarioResponseDTO salvaUsuario(UsuarioRequestDTO request) {
         return mapper.paraResponseDTO(
@@ -60,7 +56,7 @@ public class UsuarioService {
                         mapper.paraUsuarioEntity(request)));
     }
 
-    public void DeleteUsuarioPorNome(String nome) {
+    public void deleteUsuarioPorNome(String nome) {
         userRepository.deleteByNome(nome);
 
     }

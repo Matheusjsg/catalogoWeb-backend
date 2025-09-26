@@ -7,8 +7,7 @@ import lombok.Setter;
 
 import java.util.List;
 
-@Getter
-@Setter
+
 @Entity
 @Table(name = "categorias")
 public class CategoriaEntity {
@@ -25,6 +24,33 @@ public class CategoriaEntity {
         public CategoriaEntity() {
         }
 
+    public CategoriaEntity(Long id, String nome, List<ProdutoEntity> produtos) {
+        this.id = id;
+        this.nome = nome;
+        this.produtos = produtos;
+    }
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<ProdutoEntity> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<ProdutoEntity> produtos) {
+        this.produtos = produtos;
+    }
 }

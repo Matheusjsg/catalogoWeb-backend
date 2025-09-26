@@ -8,6 +8,7 @@ import com.ecommerce.simples.infrastructure.entities.ImagemEntity;
 import com.ecommerce.simples.infrastructure.entities.ProdutoEntity;
 import com.ecommerce.simples.infrastructure.repositories.CategoriaRepository;
 import com.ecommerce.simples.infrastructure.repositories.ProdutoRepository;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,13 +17,18 @@ import java.text.Normalizer;
 import java.util.List;
 import java.util.Locale;
 
-@RequiredArgsConstructor
+
 @Service
 public class ProdutoService {
+    public ProdutoService(ProdutoRepository produtoRepository, CategoriaRepository categoriaRepository, ProdutoMapper produtoMapper) {
+        this.produtoRepository = produtoRepository;
+        this.categoriaRepository = categoriaRepository;
+        this.produtoMapper = produtoMapper;
+    }
 
-    private ProdutoRepository produtoRepository;
-    private CategoriaRepository categoriaRepository;
-    private ProdutoMapper produtoMapper;
+    private final ProdutoRepository produtoRepository;
+    private final CategoriaRepository categoriaRepository;
+    private final ProdutoMapper produtoMapper;
 
     @Transactional
     public ProdutoResponseDTO criarProduto(ProdutoRequestDTO dto) {

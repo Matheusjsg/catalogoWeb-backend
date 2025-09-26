@@ -9,14 +9,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
-
-
 public class UsuarioResponseDTO {
 
+    private long id;
     private String nome;
     private String email;
-    private String token;
+    private String Role;
 
 
 

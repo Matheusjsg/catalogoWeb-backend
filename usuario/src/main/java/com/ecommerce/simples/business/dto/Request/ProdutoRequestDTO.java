@@ -8,8 +8,7 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Getter
-@Setter
+
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProdutoRequestDTO {
@@ -22,4 +21,54 @@ public class ProdutoRequestDTO {
     private BigDecimal preco;
     private List<String> imagens;
     private Long categoriaId;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDescricaolink() {
+        return descricaolink;
+    }
+
+    public void setDescricaolink(String descricaolink) {
+        this.descricaolink = descricaolink;
+    }
+
+    public String getDescricaoCompleta() {
+        return descricaoCompleta;
+    }
+
+    public void setDescricaoCompleta(String descricaoCompleta) {
+        this.descricaoCompleta = descricaoCompleta;
+    }
+
+    public BigDecimal getPreco() {
+        return preco;
+    }
+
+    public void setPreco(BigDecimal preco) {
+        this.preco = preco;
+    }
+
+    public List<String> getImagens() {
+        return imagens;
+    }
+
+    public void setImagens(List<String> imagens) {
+        this.imagens = imagens;
+    }
+
+    public Long getCategoriaId() {
+        return categoriaId;
+    }
+
+    public void setCategoriaId(Long categoriaId) {
+        this.categoriaId = categoriaId;
+    }
 }
+
+
