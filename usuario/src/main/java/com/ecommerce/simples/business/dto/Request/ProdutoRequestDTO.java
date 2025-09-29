@@ -9,11 +9,17 @@ import java.math.BigDecimal;
 import java.util.List;
 
 
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class ProdutoRequestDTO {
 
-
+    public ProdutoRequestDTO(String nome, String descricaolink, String descricaoCompleta, BigDecimal preco, List<String> imagens, Long categoriaId) {
+        this.nome = nome;
+        this.descricaolink = descricaolink;
+        this.descricaoCompleta = descricaoCompleta;
+        this.preco = preco;
+        this.imagens = imagens;
+        this.categoriaId = categoriaId;
+    }
 
     private String nome;
     private String descricaolink;

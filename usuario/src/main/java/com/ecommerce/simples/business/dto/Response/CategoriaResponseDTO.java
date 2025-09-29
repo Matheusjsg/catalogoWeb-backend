@@ -1,10 +1,5 @@
 package com.ecommerce.simples.business.dto.Response;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 
 public class CategoriaResponseDTO {
     private Long id;

@@ -15,10 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
-
-@RequiredArgsConstructor
-@AllArgsConstructor
 @Service
 public class UsuarioService {
 
@@ -26,8 +22,11 @@ public class UsuarioService {
     private UsuarioMapper mapper;
     private PasswordEncoder passwordEncoder;
 
-
-
+    public UsuarioService(UsuarioRepository userRepository, UsuarioMapper mapper, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.mapper = mapper;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public UsuarioResponseDTO criarUsuario(UsuarioRequestDTO dto) {
 
@@ -36,17 +35,13 @@ public class UsuarioService {
                 .ifPresent(u -> {
                     throw new RuntimeException("Email já cadastrado!");
                 });
-        // mapear dados básicos
-        UsuarioEntity usuario = mapper.paraUsuarioEntity(dto);
-
-        // gerar hash da senha (BCrypt) e setar na entidade
+        UsuarioEntity usuario = new UsuarioEntity();
+        usuario.setEmail(dto.getEmail());
+        usuario.setNome(dto.getNome());
         usuario.setPassword(passwordEncoder.encode(dto.getPassword()));
+        usuario.setRole("USER");
 
-        // salvar
-        UsuarioEntity salvo = userRepository.save(usuario);
-
-        // retornar response DTO (sem senha)
-        return mapper.paraResponseDTO(salvo);
+        return mapper.paraResponseDTO(userRepository.save(usuario));
 
     }
 
@@ -58,6 +53,15 @@ public class UsuarioService {
 
     public void deleteUsuarioPorNome(String nome) {
         userRepository.deleteByNome(nome);
+
+    }
+    public void deleteUsuarioPorEmail(String email) {
+        userRepository.deleteByEmail(email);
+
+    }
+
+    public void deleteUsuarioPorId(Long id) {
+        userRepository.deleteById(id);
 
     }
 

@@ -1,17 +1,19 @@
 package com.ecommerce.simples.business.dto.Request;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 
 
-@AllArgsConstructor
 public class UsuarioRequestDTO {
 
     private String nome;
     private String email;
     private String password;
+
+    public UsuarioRequestDTO(String nome, String email, String password) {
+        this.nome = nome;
+        this.email = email;
+        this.password = password;
+    }
 
     public String getNome() {
         return nome;

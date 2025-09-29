@@ -4,11 +4,8 @@ package com.ecommerce.simples.infrastructure.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Getter
-@Setter
+
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name= "tb_users")
 public class UsuarioEntity {
 
@@ -27,6 +24,18 @@ public class UsuarioEntity {
 
     @Column(name = "role")
     private String role;
+
+    public UsuarioEntity(Long id, String nome, String email, String password, String role) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
+    public UsuarioEntity() {
+
+    }
 
     public Long getId() {
         return id;

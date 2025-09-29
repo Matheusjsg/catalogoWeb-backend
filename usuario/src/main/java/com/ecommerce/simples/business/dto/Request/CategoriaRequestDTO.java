@@ -5,10 +5,19 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class CategoriaRequestDTO {
     private String nome;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public CategoriaRequestDTO(String nome) {
+        this.nome = nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }

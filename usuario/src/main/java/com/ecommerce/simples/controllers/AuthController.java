@@ -1,6 +1,9 @@
 package com.ecommerce.simples.controllers;
 
+
+import com.ecommerce.simples.business.dto.Request.AuthResquestDTO;
 import com.ecommerce.simples.business.dto.Request.UsuarioRequestDTO;
+import com.ecommerce.simples.business.dto.Response.AuthResponseDTO;
 import com.ecommerce.simples.business.dto.Response.UsuarioResponseDTO;
 import com.ecommerce.simples.business.mapstruct.UsuarioMapper;
 import com.ecommerce.simples.business.services.UsuarioService;
@@ -10,10 +13,7 @@ import com.ecommerce.simples.security.JwtUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -27,8 +27,15 @@ public class AuthController {
     private JwtUtil jwtUtil;
     private UsuarioMapper mapper;
 
+    public AuthController(UsuarioService usuarioService, UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder, JwtUtil jwtUtil, UsuarioMapper mapper) {
+        this.usuarioService = usuarioService;
+        this.usuarioRepository = usuarioRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtUtil = jwtUtil;
+        this.mapper = mapper;
+    }
 
-@PostMapping("/registrar")
+    @PostMapping("/registrar")
     public ResponseEntity<?> registrar(@RequestBody UsuarioRequestDTO dto) {
     UsuarioResponseDTO usuario = usuarioService.criarUsuario(dto);
     {
@@ -37,20 +44,24 @@ public class AuthController {
 }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody UsuarioRequestDTO request){
+    public ResponseEntity<?> login(@RequestBody AuthResquestDTO request){
         UsuarioEntity usuario = usuarioService.buscarEntidadePorEmail(request.getEmail());
         boolean senhaValida = passwordEncoder.matches(request.getPassword(), usuario.getPassword());
 
-        if (!senhaValida) {
-            return ResponseEntity
-                    .status(HttpStatus.UNAUTHORIZED)
-                    .body("Senha inválida");
+        if (usuario == null || !passwordEncoder.matches(request.getPassword(), usuario.getPassword())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
         }
-                String token = jwtUtil.generateToken(usuario.getEmail());
-        return ResponseEntity.ok(Map.of(
-                "usuario", mapper.paraResponseDTO(usuario),
-                "token", token
-        ));
+
+        String token = jwtUtil.generateToken(usuario.getEmail());
+        UsuarioResponseDTO usuarioDTO = mapper.paraResponseDTO(usuario);
+
+        return ResponseEntity.ok(new AuthResponseDTO(token, usuarioDTO));
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<Void> excluirUsuario(@RequestBody String email) {
+        usuarioService.deleteUsuarioPorEmail(email);
+        return ResponseEntity.ok().build();
     }
 
 
