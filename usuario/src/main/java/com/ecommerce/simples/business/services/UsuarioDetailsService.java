@@ -2,13 +2,10 @@ package com.ecommerce.simples.business.services;
 
 import com.ecommerce.simples.infrastructure.entities.UsuarioEntity;
 import com.ecommerce.simples.infrastructure.repositories.UsuarioRepository;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service

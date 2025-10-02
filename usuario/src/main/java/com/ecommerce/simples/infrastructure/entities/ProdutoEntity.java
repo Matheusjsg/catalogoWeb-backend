@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "produtos")
+@Table(name = "tb_produtos")
 public class ProdutoEntity {
 
 
@@ -35,7 +35,7 @@ public class ProdutoEntity {
         private String slug;
 
         @ManyToOne
-        @JoinColumn(name = "categoria")
+        @JoinColumn(name = "categoria_id")
         private CategoriaEntity categoria;
 
         // Construtor

@@ -39,8 +39,8 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**", "/registrar", "/login", "/adicionarProdutos").permitAll() // rotas públicas
-                        .requestMatchers("/produtos/**", "/adicionarProdutos").permitAll()
+                        .requestMatchers("/auth/login").permitAll() // rotas públicas
+                        .requestMatchers("/produtos/**").permitAll()
                         .anyRequest().authenticated() // todo o resto precisa de JWT
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);

@@ -6,7 +6,7 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name = "ImagemProduto")
+@Table(name = "tb_imagens")
 public class ImagemEntity {
 
 

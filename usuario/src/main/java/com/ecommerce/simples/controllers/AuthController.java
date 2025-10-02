@@ -58,8 +58,8 @@ public class AuthController {
         return ResponseEntity.ok(new AuthResponseDTO(token, usuarioDTO));
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<Void> excluirUsuario(@RequestBody String email) {
+    @DeleteMapping("/delete/{email}")
+    public ResponseEntity<Void> excluirUsuario(@PathVariable String email) {
         usuarioService.deleteUsuarioPorEmail(email);
         return ResponseEntity.ok().build();
     }
