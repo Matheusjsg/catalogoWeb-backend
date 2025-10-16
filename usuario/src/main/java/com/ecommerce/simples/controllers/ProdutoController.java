@@ -31,6 +31,7 @@ public class ProdutoController {
         return ResponseEntity.ok(listarProdutos); // 200 + lista de produtos
 }
 
+
     @GetMapping("categoria/{nome}")
     public ResponseEntity<List<ProdutoResponseDTO>> listarPorCategoria(@PathVariable String nome){
         List<ProdutoResponseDTO> listarCategoria = produtoService.listarProdutosCategotia(nome);

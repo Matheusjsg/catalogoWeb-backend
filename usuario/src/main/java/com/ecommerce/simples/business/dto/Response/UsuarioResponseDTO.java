@@ -14,6 +14,9 @@ public class UsuarioResponseDTO {
     private String email;
     private String Role;
 
+    public UsuarioResponseDTO(){
+
+    }
 
     public UsuarioResponseDTO(long id, String nome, String email, String role) {
         this.id = id;

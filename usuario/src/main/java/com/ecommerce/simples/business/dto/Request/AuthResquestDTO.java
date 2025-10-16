@@ -1,13 +1,15 @@
 package com.ecommerce.simples.business.dto.Request;
 
 
+import jakarta.validation.constraints.NotEmpty;
+import org.aspectj.bridge.IMessage;
 
 public class AuthResquestDTO {
 
     private String email;
     private String password;
 
-    public AuthResquestDTO(String email, String password) {
+    public AuthResquestDTO(@NotEmpty (message = "Email Obrigatório") String email, @NotEmpty (message = "Senha Obrigatória")String password) {
         this.email = email;
         this.password = password;
     }

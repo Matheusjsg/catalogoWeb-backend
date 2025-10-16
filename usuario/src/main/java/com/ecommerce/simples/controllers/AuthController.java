@@ -10,6 +10,7 @@ import com.ecommerce.simples.business.services.UsuarioService;
 import com.ecommerce.simples.infrastructure.entities.UsuarioEntity;
 import com.ecommerce.simples.infrastructure.repositories.UsuarioRepository;
 import com.ecommerce.simples.security.JwtUtil;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,7 +37,7 @@ public class AuthController {
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity<?> registrar(@RequestBody UsuarioRequestDTO dto) {
+    public ResponseEntity<?> registrar(@Valid @RequestBody UsuarioRequestDTO dto) {
     UsuarioResponseDTO usuario = usuarioService.criarUsuario(dto);
     {
         return ResponseEntity.ok(usuario);
@@ -44,7 +45,7 @@ public class AuthController {
 }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody AuthResquestDTO request){
+    public ResponseEntity<?> login(@Valid  @RequestBody AuthResquestDTO request){
         UsuarioEntity usuario = usuarioService.buscarEntidadePorEmail(request.getEmail());
         boolean senhaValida = passwordEncoder.matches(request.getPassword(), usuario.getPassword());
 

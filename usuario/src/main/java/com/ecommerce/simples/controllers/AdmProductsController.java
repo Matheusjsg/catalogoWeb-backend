@@ -45,4 +45,23 @@ public class AdmProductsController {
 
     }
 
+    @PutMapping ("/editar/{id}")
+    public ResponseEntity<ProdutoResponseDTO> editarProduto(@PathVariable Long id,
+                                                            @RequestBody ProdutoRequestDTO dto) {
+        ProdutoResponseDTO produtoAtualizado = produtoService.editarProduto(id, dto);
+        return ResponseEntity.ok(produtoAtualizado);
+    }
+
+
+    @GetMapping("categoria/{nome}")
+    public ResponseEntity<List<ProdutoResponseDTO>> listarPorCategoria(@PathVariable String nome){
+        List<ProdutoResponseDTO> listarCategoria = produtoService.listarProdutosCategotia(nome);
+
+        if (listarCategoria.isEmpty()) {
+            return ResponseEntity.noContent().build(); // 204 se não houver produtos
+        }
+        return ResponseEntity.ok(listarCategoria); // 200 + lista de produtos
+    }
+
+
 }

@@ -67,17 +67,12 @@ public class ProdutoService {
     }
 
 
-
-
     // -------- Buscar produto por ID --------
     public ProdutoResponseDTO buscarProdutoPorId(Long id) {
         ProdutoEntity produto = produtoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Produto não encontrado"));
         return produtoMapper.paraProdutoResponse(produto);
     }
-
-
-
 
     @Transactional
     public ProdutoResponseDTO editarProduto(Long id, ProdutoRequestDTO dto) {

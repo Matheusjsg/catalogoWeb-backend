@@ -1,7 +1,7 @@
 package com.ecommerce.simples.business.dto.Request;
 
 
-
+import jakarta.validation.constraints.NotEmpty;
 
 public class UsuarioRequestDTO {
 
@@ -9,7 +9,9 @@ public class UsuarioRequestDTO {
     private String email;
     private String password;
 
-    public UsuarioRequestDTO(String nome, String email, String password) {
+    public UsuarioRequestDTO(@NotEmpty(message = "Nome é obrigatório") String nome,
+                             @NotEmpty(message = "Email é obrigatório")String email,
+                             @NotEmpty(message = "Senha é obrigatório")String password) {
         this.nome = nome;
         this.email = email;
         this.password = password;

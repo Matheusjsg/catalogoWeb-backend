@@ -71,13 +71,13 @@ public class UsuarioService {
 
     }
     public UsuarioEntity buscarEntidadePorEmail(String email) {
-        return userRepository.findByEmail(email)
+        return (UsuarioEntity) userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
     }
 
     public UsuarioResponseDTO buscarPorEmail(String email) {
 
-        UsuarioEntity usuario = userRepository.findByEmail(email)
+        UsuarioEntity usuario = (UsuarioEntity) userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
         return mapper.paraResponseDTO(usuario);
