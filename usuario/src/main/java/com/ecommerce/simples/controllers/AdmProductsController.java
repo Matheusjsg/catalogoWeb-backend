@@ -1,8 +1,11 @@
 package com.ecommerce.simples.controllers;
 
 
+import com.ecommerce.simples.business.dto.Request.CategoriaRequestDTO;
 import com.ecommerce.simples.business.dto.Request.ProdutoRequestDTO;
+import com.ecommerce.simples.business.dto.Response.CategoriaResponseDTO;
 import com.ecommerce.simples.business.dto.Response.ProdutoResponseDTO;
+import com.ecommerce.simples.business.services.CategoriaService;
 import com.ecommerce.simples.business.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,9 +20,11 @@ public class AdmProductsController {
 
     @Autowired
     private final ProdutoService produtoService;
+    private final CategoriaService categoriaService;
 
-    public AdmProductsController(ProdutoService produtoService) {
+    public AdmProductsController(ProdutoService produtoService, CategoriaService categoriaService) {
         this.produtoService = produtoService;
+        this.categoriaService = categoriaService;
     }
 
     @DeleteMapping("/delete/{id}")
@@ -52,6 +57,11 @@ public class AdmProductsController {
         return ResponseEntity.ok(produtoAtualizado);
     }
 
+    @PostMapping("/adicionarCategoria")
+    public ResponseEntity<CategoriaResponseDTO> adicinarCategoria(@RequestBody CategoriaRequestDTO categoriaDto){
+        CategoriaResponseDTO novaCategoria = categoriaService.CriarCategoria(categoriaDto);
+        return ResponseEntity.ok(novaCategoria);
+    }
 
     @GetMapping("categoria/{nome}")
     public ResponseEntity<List<ProdutoResponseDTO>> listarPorCategoria(@PathVariable String nome){

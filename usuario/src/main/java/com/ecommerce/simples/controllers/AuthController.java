@@ -13,6 +13,10 @@ import com.ecommerce.simples.security.JwtUtil;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,13 +31,15 @@ public class AuthController {
     private PasswordEncoder passwordEncoder;
     private JwtUtil jwtUtil;
     private UsuarioMapper mapper;
+    private AuthenticationManager authenticationManager;
 
-    public AuthController(UsuarioService usuarioService, UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder, JwtUtil jwtUtil, UsuarioMapper mapper) {
+    public AuthController(UsuarioService usuarioService, AuthenticationManager authenticationManager, UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder, JwtUtil jwtUtil, UsuarioMapper mapper) {
         this.usuarioService = usuarioService;
         this.usuarioRepository = usuarioRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtUtil = jwtUtil;
         this.mapper = mapper;
+        this.authenticationManager = authenticationManager;
     }
 
     @PostMapping("/registrar")
@@ -46,17 +52,15 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid  @RequestBody AuthResquestDTO request){
-        UsuarioEntity usuario = usuarioService.buscarEntidadePorEmail(request.getEmail());
-        boolean senhaValida = passwordEncoder.matches(request.getPassword(), usuario.getPassword());
 
-        if (usuario == null || !passwordEncoder.matches(request.getPassword(), usuario.getPassword())) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
-        }
+        UsernamePasswordAuthenticationToken UserAndPass = new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword());
+        Authentication authentication = authenticationManager.authenticate(UserAndPass);
 
-        String token = jwtUtil.generateToken(usuario.getEmail());
-        UsuarioResponseDTO usuarioDTO = mapper.paraResponseDTO(usuario);
+        //exibindo token
+        UserDetails user = (UserDetails) authentication.getPrincipal();
+        String token = jwtUtil.generateToken(user.getUsername());
+        return  ResponseEntity.ok(Map.of("token", token));
 
-        return ResponseEntity.ok(new AuthResponseDTO(token, usuarioDTO));
     }
 
     @DeleteMapping("/delete/{email}")

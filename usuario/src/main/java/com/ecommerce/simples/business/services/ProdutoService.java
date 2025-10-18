@@ -1,7 +1,10 @@
 package com.ecommerce.simples.business.services;
 
+import com.ecommerce.simples.business.dto.Request.CategoriaRequestDTO;
 import com.ecommerce.simples.business.dto.Request.ProdutoRequestDTO;
+import com.ecommerce.simples.business.dto.Response.CategoriaResponseDTO;
 import com.ecommerce.simples.business.dto.Response.ProdutoResponseDTO;
+import com.ecommerce.simples.business.mapstruct.CategoriaMapper;
 import com.ecommerce.simples.business.mapstruct.ProdutoMapper;
 import com.ecommerce.simples.infrastructure.entities.CategoriaEntity;
 import com.ecommerce.simples.infrastructure.entities.ImagemEntity;
@@ -29,6 +32,7 @@ public class ProdutoService {
     private final ProdutoRepository produtoRepository;
     private final CategoriaRepository categoriaRepository;
     private final ProdutoMapper produtoMapper;
+
 
     @Transactional
     public ProdutoResponseDTO criarProduto(ProdutoRequestDTO dto) {
@@ -119,6 +123,7 @@ public class ProdutoService {
     public void deletarProdutoPorId(Long id){
                 produtoRepository.deleteById(id);
     }
+
 
     // -------- Gerar slug a partir do nome --------
     private String gerarSlug(String nome) {
