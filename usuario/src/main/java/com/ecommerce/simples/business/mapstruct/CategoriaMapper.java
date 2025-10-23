@@ -11,6 +11,7 @@ import org.mapstruct.Mapping;
 public interface CategoriaMapper {
 
     @Mapping(target = "id", ignore = true)
+
     CategoriaEntity toEntity(CategoriaRequestDTO dto);
 
     CategoriaResponseDTO toResponse(CategoriaEntity entity);

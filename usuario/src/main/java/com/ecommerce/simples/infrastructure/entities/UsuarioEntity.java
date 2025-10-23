@@ -42,6 +42,9 @@ public class UsuarioEntity implements UserDetails {
 
     }
 
+    public UsuarioEntity(String nome, String mail, String number, String user) {
+    }
+
     public Long getId() {
         return id;
     }

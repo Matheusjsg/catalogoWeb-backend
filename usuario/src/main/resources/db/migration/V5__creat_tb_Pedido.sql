@@ -1,0 +1,6 @@
+CREATE TABLE tb_pedido (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    data_criacao DATETIME NOT NULL,
+    status VARCHAR(50) DEFAULT 'PENDENTE',
+    total DECIMAL(10,2) NOT NULL
+);

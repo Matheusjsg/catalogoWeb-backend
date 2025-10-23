@@ -1,10 +1,6 @@
 package com.ecommerce.simples.business.dto.Response;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 
 public class UsuarioResponseDTO {
@@ -14,8 +10,7 @@ public class UsuarioResponseDTO {
     private String email;
     private String Role;
 
-    public UsuarioResponseDTO(){
-
+    public UsuarioResponseDTO() {
     }
 
     public UsuarioResponseDTO(long id, String nome, String email, String role) {
