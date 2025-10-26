@@ -1,7 +1,6 @@
 package com.ecommerce.simples.business.dto.Request;
 
-import com.ecommerce.simples.infrastructure.entities.ItemPedidoEntity;
-import com.ecommerce.simples.infrastructure.entities.UsuarioEntity;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -10,20 +9,18 @@ public class PedidoRequestDTO {
 
     private String status;
     private BigDecimal total;
-    private UsuarioEntity cliente;
-    private List<ItemPedidoEntity> itens;
+    private Long clienteId;
+    private List<ItemPedidoRequestDTO> itens;
 
     public PedidoRequestDTO() {
     }
 
-    public PedidoRequestDTO(BigDecimal total, UsuarioEntity cliente, List<ItemPedidoEntity> itens) {
-
+    public PedidoRequestDTO(String status, BigDecimal total, Long clienteId, List<ItemPedidoRequestDTO> itens) {
+        this.status = status;
         this.total = total;
-        this.cliente = cliente;
+        this.clienteId = clienteId;
         this.itens = itens;
     }
-
-
 
     public String getStatus() {
         return status;
@@ -41,19 +38,19 @@ public class PedidoRequestDTO {
         this.total = total;
     }
 
-    public UsuarioEntity getCliente() {
-        return cliente;
+    public Long getClienteId() {
+        return clienteId;
     }
 
-    public void setCliente(UsuarioEntity cliente) {
-        this.cliente = cliente;
+    public void setClienteId(Long clienteId) {
+        this.clienteId = clienteId;
     }
 
-    public List<ItemPedidoEntity> getItens() {
+    public List<ItemPedidoRequestDTO> getItens() {
         return itens;
     }
 
-    public void setItens(List<ItemPedidoEntity> itens) {
+    public void setItens(List<ItemPedidoRequestDTO> itens) {
         this.itens = itens;
     }
 }

@@ -17,7 +17,11 @@ public class UsuarioResponseDTO {
         this.id = id;
         this.nome = nome;
         this.email = email;
-        Role = role;
+        this.Role = role;
+    }
+
+    public UsuarioResponseDTO(Long id, String nome, String email) {
+
     }
 
     public long getId() {

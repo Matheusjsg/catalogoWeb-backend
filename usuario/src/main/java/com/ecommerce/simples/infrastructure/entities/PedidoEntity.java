@@ -20,7 +20,7 @@ public class PedidoEntity {
     @ManyToOne
     private UsuarioEntity cliente;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemPedidoEntity> itens;
 
 

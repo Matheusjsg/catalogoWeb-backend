@@ -16,9 +16,11 @@ public class ItemPedidoEntity {
     private BigDecimal precoUnitario;
 
     @ManyToOne
+    @JoinColumn(name = "produto_id")
     private ProdutoEntity produto;
 
     @ManyToOne
+    @JoinColumn(name = "pedido_id")
     private PedidoEntity pedido;
 
 

@@ -2,7 +2,6 @@ package com.ecommerce.simples.business.dto.Response;
 
 import com.ecommerce.simples.infrastructure.entities.ItemPedidoEntity;
 import com.ecommerce.simples.infrastructure.entities.UsuarioEntity;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,14 +12,14 @@ public class PedidoResponseDTO {
     private LocalDateTime dataCriacao;
     private String status;
     private BigDecimal total;
-    private UsuarioEntity cliente;
-    private List<ItemPedidoEntity> itens;
+    private UsuarioResponseDTO cliente;
+    private List<ItemPedidoResponseDTO> itens;
 
 
     public PedidoResponseDTO() {
     }
 
-    public PedidoResponseDTO(Long id, LocalDateTime dataCriacao, String status, BigDecimal total, UsuarioEntity cliente, List<ItemPedidoEntity> itens) {
+    public PedidoResponseDTO(Long id, LocalDateTime dataCriacao, String status, BigDecimal total, UsuarioResponseDTO cliente, List<ItemPedidoResponseDTO> itens) {
         this.id = id;
         this.dataCriacao = dataCriacao;
         this.status = status;
@@ -61,19 +60,19 @@ public class PedidoResponseDTO {
         this.total = total;
     }
 
-    public UsuarioEntity getCliente() {
+    public UsuarioResponseDTO getCliente() {
         return cliente;
     }
 
-    public void setCliente(UsuarioEntity cliente) {
+    public void setCliente(UsuarioResponseDTO cliente) {
         this.cliente = cliente;
     }
 
-    public List<ItemPedidoEntity> getItens() {
+    public List<ItemPedidoResponseDTO> getItens() {
         return itens;
     }
 
-    public void setItens(List<ItemPedidoEntity> itens) {
+    public void setItens(List<ItemPedidoResponseDTO> itens) {
         this.itens = itens;
     }
 }

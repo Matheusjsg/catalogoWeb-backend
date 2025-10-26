@@ -5,30 +5,37 @@ import com.ecommerce.simples.infrastructure.entities.ProdutoEntity;
 
 import java.math.BigDecimal;
 
-public class ItemProdutoResponseDTO {
+public class ItemPedidoResponseDTO {
 
 
-
-    private int quantidade;
+    private Long id;
+    private Integer quantidade;
     private BigDecimal precoUnitario;
-    private ProdutoEntity produto;
-    private PedidoEntity pedido;
+    private ProdutoResponseDTO produto;
 
-    public ItemProdutoResponseDTO() {
+    public ItemPedidoResponseDTO() {
     }
 
-    public ItemProdutoResponseDTO(ProdutoEntity produto, int quantidade, BigDecimal precoUnitario, PedidoEntity pedido) {
-        this.produto = produto;
+    public ItemPedidoResponseDTO(Long id, Integer quantidade, BigDecimal precoUnitario, ProdutoResponseDTO produto) {
+        this.id = id;
         this.quantidade = quantidade;
         this.precoUnitario = precoUnitario;
-        this.pedido = pedido;
+        this.produto = produto;
     }
 
-    public int getQuantidade() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
 
@@ -40,19 +47,11 @@ public class ItemProdutoResponseDTO {
         this.precoUnitario = precoUnitario;
     }
 
-    public ProdutoEntity getProduto() {
+    public ProdutoResponseDTO getProduto() {
         return produto;
     }
 
-    public void setProduto(ProdutoEntity produto) {
+    public void setProduto(ProdutoResponseDTO produto) {
         this.produto = produto;
-    }
-
-    public PedidoEntity getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(PedidoEntity pedido) {
-        this.pedido = pedido;
     }
 }

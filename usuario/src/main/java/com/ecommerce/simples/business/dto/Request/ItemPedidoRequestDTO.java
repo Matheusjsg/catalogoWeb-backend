@@ -9,28 +9,28 @@ import java.math.BigDecimal;
     public class ItemPedidoRequestDTO {
 
 
-        private int quantidade;
+
+        private Long produtoId;
         private BigDecimal precoUnitario;
-        private ProdutoEntity produto;
-        private PedidoEntity pedido;
+        private int quantidade;
+
 
 
         public ItemPedidoRequestDTO() {
         }
 
-        public ItemPedidoRequestDTO(int quantidade, BigDecimal precoUnitario, ProdutoEntity produto, PedidoEntity pedido) {
-            this.quantidade = quantidade;
+        public ItemPedidoRequestDTO(Long produtoId, BigDecimal precoUnitario, int quantidade) {
+            this.produtoId = produtoId;
             this.precoUnitario = precoUnitario;
-            this.produto = produto;
-            this.pedido = pedido;
-        }
-
-        public int getQuantidade() {
-            return quantidade;
-        }
-
-        public void setQuantidade(int quantidade) {
             this.quantidade = quantidade;
+        }
+
+        public Long getProdutoId() {
+            return produtoId;
+        }
+
+        public void setProdutoId(Long produtoId) {
+            this.produtoId = produtoId;
         }
 
         public BigDecimal getPrecoUnitario() {
@@ -41,20 +41,12 @@ import java.math.BigDecimal;
             this.precoUnitario = precoUnitario;
         }
 
-        public ProdutoEntity getProduto() {
-            return produto;
+        public int getQuantidade() {
+            return quantidade;
         }
 
-        public void setProduto(ProdutoEntity produto) {
-            this.produto = produto;
-        }
-
-        public PedidoEntity getPedido() {
-            return pedido;
-        }
-
-        public void setPedido(PedidoEntity pedido) {
-            this.pedido = pedido;
+        public void setQuantidade(int quantidade) {
+            this.quantidade = quantidade;
         }
     }
 
