@@ -84,4 +84,11 @@ public class PedidoEntity {
     public void setItens(List<ItemPedidoEntity> itens) {
         this.itens = itens;
     }
+
+    public void calcularTotal() {
+        this.total = itens.stream()
+                .map(ItemPedidoEntity::getSubTotal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
 }

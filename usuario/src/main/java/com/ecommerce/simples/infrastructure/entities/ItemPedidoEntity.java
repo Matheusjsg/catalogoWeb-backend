@@ -24,10 +24,8 @@ public class ItemPedidoEntity {
     private PedidoEntity pedido;
 
 
-
     public ItemPedidoEntity() {
     }
-
 
 
     public ItemPedidoEntity(Long id, int quantidade, BigDecimal precoUnitario, ProdutoEntity produto, PedidoEntity pedido) {
@@ -78,4 +76,9 @@ public class ItemPedidoEntity {
     public void setPedido(PedidoEntity pedido) {
         this.pedido = pedido;
     }
+
+    public BigDecimal getSubTotal() {
+        return precoUnitario.multiply(BigDecimal.valueOf(quantidade));
+    }
+
 }
