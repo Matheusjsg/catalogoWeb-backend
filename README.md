@@ -131,8 +131,3 @@ Durante o desenvolvimento, foram aplicadas diversas boas práticas:
 Este projeto está sob a licença MIT.
 Sinta-se à vontade para usar e contribuir! 🤝
 
----
-
-### 📸 (Opcional)
-
-Adicione aqui **prints da interface**, **coleções do Postman** ou **diagrama da arquitetura** para enriquecer o README.
