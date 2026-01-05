@@ -33,8 +33,9 @@ public class SecurityConfig {
                 .cors(cors -> cors.configure(http))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/login", "/auth/registrar").permitAll() // rotas públicas
-                        .requestMatchers("/produtos/**").permitAll()
+                        .requestMatchers("/auth/login", "/auth/registrar", "/swagger-ui/index.html").permitAll() // rotas públicas
+                        .requestMatchers("/produtos/**", "/produtos/categorias/**").permitAll()
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                         .anyRequest().authenticated() // todo o resto precisa de JWT
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);

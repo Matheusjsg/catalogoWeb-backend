@@ -2,10 +2,14 @@ package com.ecommerce.simples.business.services;
 
 import com.ecommerce.simples.business.dto.Request.CategoriaRequestDTO;
 import com.ecommerce.simples.business.dto.Response.CategoriaResponseDTO;
+import com.ecommerce.simples.business.dto.Response.ProdutoResponseDTO;
 import com.ecommerce.simples.business.mapstruct.CategoriaMapper;
 import com.ecommerce.simples.infrastructure.entities.CategoriaEntity;
+import com.ecommerce.simples.infrastructure.entities.ProdutoEntity;
 import com.ecommerce.simples.infrastructure.repositories.CategoriaRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CategoriaService {
@@ -28,5 +32,9 @@ public class CategoriaService {
         // Retornar DTO de resposta
         return categoriaMapper.toResponse(salvo);
     }
+public List<CategoriaResponseDTO> listarCategoria(){
+    List<CategoriaEntity> categorias = categoriaRepository.findAll();
+    return categoriaMapper.paraListarCategoriaResponse(categorias);
 
+}
 }
