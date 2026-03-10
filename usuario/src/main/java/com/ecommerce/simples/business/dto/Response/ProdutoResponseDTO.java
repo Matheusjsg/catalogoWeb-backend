@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ProdutoResponseDTO {
 
-
+        private Long id;
         private String nome;
         private String descricaolink;
         private String descricaoCompleta;
@@ -20,6 +20,14 @@ public class ProdutoResponseDTO {
         private List<String> imagens;
         private String slug;
         private CategoriaResponseDTO categoria;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -77,7 +85,8 @@ public class ProdutoResponseDTO {
         this.categoria = categoria;
     }
 
-    public ProdutoResponseDTO(String nome, String descricaolink, String descricaoCompleta, BigDecimal preco, List<String> imagens, String slug, CategoriaResponseDTO categoria) {
+    public ProdutoResponseDTO(Long id, String nome, String descricaolink, String descricaoCompleta, BigDecimal preco, List<String> imagens, String slug, CategoriaResponseDTO categoria) {
+        this.id = id;
         this.nome = nome;
         this.descricaolink = descricaolink;
         this.descricaoCompleta = descricaoCompleta;

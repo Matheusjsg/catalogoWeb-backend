@@ -30,11 +30,10 @@ public class UsuarioService {
 
     public UsuarioResponseDTO criarUsuario(UsuarioRequestDTO dto) {
 
-        userRepository.findByEmail(dto.getEmail())
-
-                .ifPresent(u -> {
+        userRepository.findByEmail(dto.getEmail()).ifPresent(u -> {
                     throw new RuntimeException("Email já cadastrado!");
                 });
+
         UsuarioEntity usuario = new UsuarioEntity();
         usuario.setEmail(dto.getEmail());
         usuario.setNome(dto.getNome());
@@ -46,9 +45,7 @@ public class UsuarioService {
     }
 
     public UsuarioResponseDTO salvaUsuario(UsuarioRequestDTO request) {
-        return mapper.paraResponseDTO(
-                userRepository.save(
-                        mapper.paraUsuarioEntity(request)));
+        return mapper.paraResponseDTO(userRepository.save(mapper.paraUsuarioEntity(request)));
     }
 
     public void deleteUsuarioPorNome(String nome) {
@@ -82,8 +79,6 @@ public class UsuarioService {
 
         return mapper.paraResponseDTO(usuario);
     }
-
-
 
     public List<UsuarioResponseDTO> MostrarUsuarios() {
         return mapper.paraListaUsuarioResponseDTO(

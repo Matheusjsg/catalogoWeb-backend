@@ -1,4 +1,4 @@
-package com.ecommerce.simples.business.services;
+package com.ecommerce.simples.security.securityService;
 
 import com.ecommerce.simples.infrastructure.entities.UsuarioEntity;
 import com.ecommerce.simples.infrastructure.repositories.UsuarioRepository;

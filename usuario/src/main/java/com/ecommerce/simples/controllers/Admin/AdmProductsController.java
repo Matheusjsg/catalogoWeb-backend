@@ -1,4 +1,4 @@
-package com.ecommerce.simples.controllers;
+package com.ecommerce.simples.controllers.Admin;
 
 
 import com.ecommerce.simples.business.dto.Request.CategoriaRequestDTO;

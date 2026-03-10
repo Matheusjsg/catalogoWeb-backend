@@ -1,4 +1,4 @@
-package com.ecommerce.simples.controllers;
+package com.ecommerce.simples.controllers.Public;
 
 import com.ecommerce.simples.business.dto.Request.PedidoRequestDTO;
 import com.ecommerce.simples.business.dto.Response.PedidoResponseDTO;

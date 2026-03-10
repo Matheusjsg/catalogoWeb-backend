@@ -10,13 +10,15 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface UsuarioMapper {
 
-    //@Mapping(source = "nome", target = "name") <- caso o nome do DTO seja diferente da entity (esclarece aqui)
+
+
    @Mapping(target = "id", ignore = true)
-      UsuarioEntity paraUsuarioEntity(UsuarioRequestDTO dto);
+   UsuarioEntity paraUsuarioEntity(UsuarioRequestDTO dto);
 
 
-    UsuarioResponseDTO paraResponseDTO(UsuarioEntity entity);
+   UsuarioResponseDTO paraResponseDTO(UsuarioEntity entity);
 
-    List<UsuarioResponseDTO> paraListaUsuarioResponseDTO(List<UsuarioEntity> lista);
+
+   List<UsuarioResponseDTO> paraListaUsuarioResponseDTO(List<UsuarioEntity> lista);
 
 }

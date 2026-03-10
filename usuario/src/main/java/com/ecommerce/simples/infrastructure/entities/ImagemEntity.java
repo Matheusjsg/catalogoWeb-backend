@@ -14,6 +14,7 @@ public class ImagemEntity {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private long id;
         private String nomeArquivo;
+
         @ManyToOne
         @JoinColumn(name = "produto_id")
         private ProdutoEntity produto;
